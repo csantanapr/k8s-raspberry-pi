@@ -79,3 +79,16 @@ Clone this repository
 ```bash
 gh repo clone csantanapr/k8s-raspberry-pi
 ```
+Setup your name and email for git
+```bash
+git config --global user.name "Your Name"
+git config --global user.email "your@email.com"
+```
+
+### VSCode
+You can use VSCode and connect to your raspberry pi. Then you can install extensions.
+
+Select "Remote Explorer" from the left side menu tasks, then select your raspberry pi
+
+Open the directory `~/k8s-raspberry-pi` as workspace, open a new terminal, this will be a prompt in your raspberry pi
+
