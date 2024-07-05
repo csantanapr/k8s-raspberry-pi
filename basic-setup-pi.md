@@ -85,7 +85,7 @@ git config --global user.name "Your Name"
 git config --global user.email "your@email.com"
 ```
 
-### VSCode
+## VSCode
 You can use VSCode and connect to your raspberry pi. Then you can install extensions.
 
 Select "Remote Explorer" from the left side menu tasks, then select your raspberry pi
@@ -94,3 +94,46 @@ Open the directory `~/k8s-raspberry-pi` as workspace, open a new terminal, this 
 
 You can install extentions like "Amazon Q" and use the Free tier, This give you an AI assitance in VSCode
 
+## SSD
+If you have a NVME SSD using an adapter you can configure like this
+
+Assume this is the output of your `lsblk`
+```
+loop0         7:0    0  33.7M  1 loop /snap/snapd/21467
+loop1         7:1    0  33.7M  1 loop /snap/snapd/21761
+mmcblk0     179:0    0  59.5G  0 disk
+├─mmcblk0p1 179:1    0   512M  0 part /boot/firmware
+└─mmcblk0p2 179:2    0    59G  0 part /
+nvme0n1     259:0    0 238.5G  0 disk
+```
+
+The SSD device name is `nvme0n1`
+
+Create a filesystem on the NVMe disk and Create a directory to mount the NVMe disk:
+```bash
+sudo mkfs.ext4 /dev/nvme0n1
+sudo mkdir /mnt/nvme
+```
+
+Add an entry to the `/etc/fstab` file to automatically mount the NVMe disk on boot:
+```bash
+sudo nano /etc/fstab
+```
+Add the following line to the file:
+```
+/dev/nvme0n1 /mnt/nvme ext4 defaults,nofail 0 2
+```
+Mount the NVMe disk:
+```bash
+sudo systemctl daemon-reload
+sudo mount /mnt/nvme
+```
+Verify
+```bash
+df -h /dev/nvme0n1
+```
+Expected output (ie. 256GB SSD)
+```
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/nvme0n1    234G   28K  222G   1% /mnt/nvme
+```
