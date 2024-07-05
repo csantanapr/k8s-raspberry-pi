@@ -28,6 +28,22 @@ Host pi5
     User ubuntu
 ```
 
+Now test the ssh connection
+```bash
+ssh ubuntu@pi5
+```
+To setup ssh client create a key pair in your raspberry pi OS
+```
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+```
+Copy the public key content and add the ssh key
+```bash
+cat ~/.ssh/id_rsa.pub
+```
+Add entry in Github to be able to git clone and push https://github.com/settings/ssh/new
+More info in https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+
+
 ## Setup Hostname
 
 If you used the Image Builder settings, the system is using cloud-init to setup the OS.
@@ -56,4 +72,10 @@ cat ${BOOT_DRIVE}/cmdline.txt
 Then reboot the raspberry pi using `sudo reboot now`
 
 
+## Install GH CLI
+Follow the instructions here https://github.com/cli/cli/blob/trunk/docs/install_linux.md
 
+Clone this repository
+```bash
+gh repo clone csantanapr/k8s-raspberry-pi
+```
