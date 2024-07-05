@@ -2,4 +2,4 @@
 
 As part of the CNCF Kubernetes Book Club Community we reviewed the Book
 
-- [Setup Raspberry Pi](setup.md)
+- [Setup Raspberry Pi](basic-setup-pi.md)
