@@ -92,3 +92,5 @@ Select "Remote Explorer" from the left side menu tasks, then select your raspber
 
 Open the directory `~/k8s-raspberry-pi` as workspace, open a new terminal, this will be a prompt in your raspberry pi
 
+You can install extentions like "Amazon Q" and use the Free tier, This give you an AI assitance in VSCode
+
