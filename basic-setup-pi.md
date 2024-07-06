@@ -30,7 +30,7 @@ Host pi5
 
 Now test the ssh connection
 ```bash
-ssh ubuntu@pi5
+ssh pi5
 ```
 To setup ssh client create a key pair in your raspberry pi OS
 ```

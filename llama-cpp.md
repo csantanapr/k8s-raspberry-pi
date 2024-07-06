@@ -1,4 +1,4 @@
-# LLAMA on Raspberry pi
+# LLAMA.CPP on Raspberry pi
 
 For setting up python environment see [python.md](python.md)
 
@@ -13,14 +13,37 @@ sudo apt install make -y
 sudo apt install cmake -y
 sudo apt install build-essential -y
 sudo apt install ccache -y
+sudo apt-get install libcurl4-openssl-dev
 ```
-
-
-clone and make
-```
+Clone the repo
+```bash
 git clone https://github.com/ggerganov/llama.cpp
 cd llama.cpp
 ```
+Build with libcurl support:
+```bash
+LLAMA_CURL=1 make
+```
+
+# Load and run the model from [Hugginface](https://huggingface.co/)
+Run it with a prompt:
+```bash
+./llama-cli \
+	--hf-repo "TheBloke/Llama-2-7B-Chat-GGUF" \
+  --hf-file "llama-2-7b-chat.Q4_K_M.gguf" \
+	-m "models/llama-2-7b-chat.Q4_K_M.gguf" \
+  -p "Generate a CLI python script to get the current time from top ten most pupular timezones, printed in a table in terminal output"
+```
+Run in in interactive mode:
+```bash
+./llama-cli \
+	--hf-repo "TheBloke/CodeLlama-34B-Python-GGUF" \
+  --hf-file "codellama-34b-python.Q5_0.gguf" \
+	-m "models/codellama-34b-python.Q5_0.gguf" \
+  -i
+```
+
+
 
 # llama cpp python bindings
 https://github.com/abetlen/llama-cpp-python
